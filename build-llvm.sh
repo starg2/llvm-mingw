@@ -222,9 +222,12 @@ if [ -n "$HOST" ]; then
     fi
 elif [ -n "$STAGE2" ]; then
     # Build using an earlier built and installed clang in the target directory
-    export PATH="$PREFIX/bin:$PATH"
+    export PATH="$PREFIX/x86_64-w64-mingw32/bin:$PREFIX/bin:$PATH"
     CMAKEFLAGS="$CMAKEFLAGS -DCMAKE_C_COMPILER=clang"
     CMAKEFLAGS="$CMAKEFLAGS -DCMAKE_CXX_COMPILER=clang++"
+    CMAKEFLAGS="$CMAKEFLAGS -DCLANG_DEFAULT_RTLIB=compiler-rt"
+    CMAKEFLAGS="$CMAKEFLAGS -DCLANG_DEFAULT_UNWINDLIB=libunwind"
+    CMAKEFLAGS="$CMAKEFLAGS -DCLANG_DEFAULT_CXX_STDLIB=libc++"
     CMAKEFLAGS="$CMAKEFLAGS -DLLVM_USE_LINKER=lld"
 else
     # Native compilation with the system default compiler.
@@ -314,6 +317,17 @@ cmake \
     -DLLVM_LINK_LLVM_DYLIB=$LINK_DYLIB \
     -DLLVM_TOOLCHAIN_TOOLS="llvm-ar;llvm-ranlib;llvm-objdump;llvm-rc;llvm-cvtres;llvm-nm;llvm-strings;llvm-readobj;llvm-dlltool;llvm-pdbutil;llvm-objcopy;llvm-strip;llvm-cov;llvm-profdata;llvm-addr2line;llvm-symbolizer;llvm-windres;llvm-ml;llvm-readelf;llvm-size;llvm-cxxfilt;llvm-lib" \
     ${HOST+-DLLVM_HOST_TRIPLE=$HOST} \
+    -DCMAKE_PREFIX_PATH="$PREFIX" \
+    -DLLVM_ENABLE_CURL=OFF \
+    -DLLVM_ENABLE_LIBXML2=ON \
+    -DLLVM_ENABLE_FFI=ON \
+    -DLLVM_ENABLE_ZLIB=ON \
+    -DLLDB_ENABLE_LIBEDIT=OFF \
+    -DLLDB_ENABLE_CURSES=OFF \
+    -DLLDB_ENABLE_LZMA=OFF \
+    -DLLDB_ENABLE_LIBXML2=ON \
+    -DLLDB_ENABLE_PYTHON=OFF \
+    -DLLDB_ENABLE_LUA=OFF \
     $CMAKEFLAGS \
     ..
 
