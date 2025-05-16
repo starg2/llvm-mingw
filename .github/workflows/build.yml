@@ -1,11 +1,9 @@
 name: Builds
 on:
   push:
-    branches:
-      - '**'
+    branches-ignore:
+      - 'custom*'
   pull_request:
-  schedule:
-    - cron: '0 0 * * *'
 
 permissions:
   contents: read
