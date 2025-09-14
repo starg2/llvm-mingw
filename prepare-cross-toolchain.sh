@@ -68,5 +68,5 @@ for arch in $ARCHS; do
 done
 
 # Copy the libc++ module sources
-rm -rf $DEST/share/libc++
-cp -a $SRC/share/libc++ $DEST/share
+#rm -rf $DEST/share/libc++
+#cp -a $SRC/share/libc++ $DEST/share
