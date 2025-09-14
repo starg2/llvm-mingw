@@ -414,6 +414,15 @@ cmake \
     -DCMAKE_PREFIX_PATH="$PREFIX" \
     -DLLVM_ENABLE_CURL=OFF \
     -DLLVM_ENABLE_LIBXML2=ON \
+    -DFFI_INCLUDE_DIR="$PREFIX/include" \
+    -DFFI_LIBRARIES="$PREFIX/lib/libffi.dll.a" \
+    -DLIBXML2_INCLUDE_DIR="$PREFIX/include/libxml2" \
+    -DLIBXML2_LIBRARY="$PREFIX/lib/libxml2.dll.a" \
+    -DZLIB_INCLUDE_DIR="$PREFIX/include" \
+    -DZLIB_LIBRARY="$PREFIX/lib/libz.dll.a" \
+    -Dzstd_INCLUDE_DIR="$PREFIX/include" \
+    -Dzstd_LIBRARY="$PREFIX/lib/libzstd.dll.a" \
+    -Dzstd_STATIC_LIBRARY="$PREFIX/lib/libzstd.a" \
     -DLLVM_ENABLE_FFI=ON \
     -DLLVM_ENABLE_ZLIB=ON \
     -DLLDB_ENABLE_LIBEDIT=OFF \
