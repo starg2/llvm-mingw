@@ -162,6 +162,13 @@ cmake \
     ${CMAKE_GENERATOR+-G} "$CMAKE_GENERATOR" \
     -DCMAKE_INSTALL_PREFIX="$PREFIX" \
     -DCMAKE_BUILD_TYPE=Release \
+    -DLIBXML2_INCLUDE_DIR="$PREFIX/include/libxml2" \
+    -DLIBXML2_LIBRARY="$PREFIX/lib/libxml2.dll.a" \
+    -DZLIB_INCLUDE_DIR="$PREFIX/include" \
+    -DZLIB_LIBRARY="$PREFIX/lib/libz.dll.a" \
+    -Dzstd_INCLUDE_DIR="$PREFIX/include" \
+    -Dzstd_LIBRARY="$PREFIX/lib/libzstd.dll.a" \
+    -Dzstd_STATIC_LIBRARY="$PREFIX/lib/libzstd.a" \
     $CMAKEFLAGS \
     ..
 
